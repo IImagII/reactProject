@@ -9,7 +9,8 @@ import { usePosts } from './components/hooks/usePost'
 import PostService from './API/PostService'
 import Loader from './components/UI/Loader/Loader'
 import { useFetching } from './components/hooks/useFetching'
-import { getPageCount } from './utils/pages'
+import { getPageCount, getPagesArray } from './utils/pages'
+import Pagination from './components/UI/pagination/Pagination'
 
 function App() {
    const [posts, setPosts] = useState([])
@@ -33,9 +34,13 @@ function App() {
       setModal(false)
    }
 
+   const changePage = (page) => {
+      setPage(page)
+   }
+
    useEffect(() => {
       fetchPost()
-   }, [])
+   }, [page])
 
    // Получаем из дочернего компонента
    const removePost = (post) => {
@@ -61,6 +66,7 @@ function App() {
          ) : (
             <PostList posts={sortedAndSearchedPosts} title={'Список постов'} remove={removePost} />
          )}
+         <Pagination changePage={changePage} page={page} totalPage={totalPage} />
       </div>
    )
 }

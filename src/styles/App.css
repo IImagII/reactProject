@@ -36,3 +36,13 @@
    opacity: 0;
    transition: opacity 500ms ease-in;
 }
+.page {
+   margin: 10px 2px;
+   border: 1px solid teal;
+   cursor: pointer;
+   padding: 10px;
+}
+.page__current {
+   border: 2px solid orange;
+   font-weight: bold;
+}
